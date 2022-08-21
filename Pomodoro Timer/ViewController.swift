@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 
     private lazy var timerLabel: UILabel = {
         let label = UILabel()
-        label.text = "00:05"
+        label.text = "25:00"
         label.font = UIFont.boldSystemFont(ofSize: 100)
         label.textColor = .systemPink
         label.textAlignment = .center
@@ -31,14 +31,16 @@ class ViewController: UIViewController {
     }()
 
     private lazy var timer = Timer()
+    private lazy var time = 25
     private lazy var isWorkTime = true
     private lazy var isStarted = false
     private lazy var isAnimationStarted = false
-    private lazy var time = 5
 
     private lazy var backProgressLayer = CAShapeLayer()
     private lazy var frontProgressLayer = CAShapeLayer()
     let animation = CABasicAnimation(keyPath: "strokeEnd")
+
+    //MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +51,26 @@ class ViewController: UIViewController {
         setConstraints()
     }
 
+    //MARK: - Setup
+
     private func setupHierarchy() {
         view.addSubview(startButton)
         view.addSubview(timerLabel)
     }
+
+    private func setConstraints() {
+        timerLabel.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+        }
+
+        startButton.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(timerLabel.snp.bottom).offset(10)
+            $0.width.height.equalTo(60)
+        }
+    }
+
+    //MARK: - Action
 
     @objc private func startButtonTapped() {
 
@@ -83,19 +101,19 @@ class ViewController: UIViewController {
             startButton.tintColor = .systemGreen
             frontProgressLayer.strokeColor = UIColor.systemGreen.cgColor
             timer.invalidate()
-            time = 3
+            time = 10
             isWorkTime = false
             isStarted = false
-            timerLabel.text = "00:03"
+            timerLabel.text = "10:00"
         } else if time == 0 && !isWorkTime {
             resetAnimation()
             drawFrontLayer()
             startButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
             timer.invalidate()
-            time = 5
+            time = 25
             isWorkTime = true
             isStarted = false
-            timerLabel.text = "00:05"
+            timerLabel.text = "25:00"
             timerLabel.textColor = .systemPink
             startButton.tintColor = .systemPink
             frontProgressLayer.strokeColor = UIColor.systemPink.cgColor
@@ -144,6 +162,8 @@ class ViewController: UIViewController {
         frontProgressLayer.lineWidth = 15
         view.layer.addSublayer(frontProgressLayer)
     }
+
+    //MARK: - Animation
 
     private func startResumeAnimation() {
         if !isAnimationStarted {
@@ -198,16 +218,4 @@ class ViewController: UIViewController {
         frontProgressLayer.removeAllAnimations()
         isAnimationStarted = false
     }
-
-    private func setConstraints() {
-        timerLabel.snp.makeConstraints {
-            $0.centerX.centerY.equalToSuperview()
-        }
-        startButton.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(timerLabel.snp.bottom).offset(10)
-            $0.width.height.equalTo(60)
-        }
-    }
 }
-
