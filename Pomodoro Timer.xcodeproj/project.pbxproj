@@ -41,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				D9ED703728B2A5EB0001EFDB /* Assets.xcassets */,
-				D97410BF28B2D1E90094517C /* Configuration */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -73,14 +72,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		D97410BF28B2D1E90094517C /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				D9ED703C28B2A5EB0001EFDB /* Info.plist */,
-			);
-			path = Configuration;
-			sourceTree = "<group>";
-		};
 		D97410C028B2D20C0094517C /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +101,7 @@
 			children = (
 				D97410BB28B2D1940094517C /* Sources */,
 				D97410BA28B2D17A0094517C /* Resources */,
+				D9ED703C28B2A5EB0001EFDB /* Info.plist */,
 			);
 			path = "Pomodoro Timer";
 			sourceTree = "<group>";
