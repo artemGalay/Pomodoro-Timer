@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     }()
 
     private lazy var timer = Timer()
-    private lazy var time = 25
+    private lazy var time = 1500
     private lazy var isWorkTime = true
     private lazy var isStarted = false
     private lazy var isAnimationStarted = false
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
             startButton.tintColor = .systemGreen
             frontProgressLayer.strokeColor = UIColor.systemGreen.cgColor
             timer.invalidate()
-            time = 10
+            time = 300
             isWorkTime = false
             isStarted = false
             timerLabel.text = "10:00"
@@ -110,7 +110,7 @@ class ViewController: UIViewController {
             drawFrontLayer()
             startButton.setImage(UIImage(systemName: "play.fill"), for: .normal)
             timer.invalidate()
-            time = 25
+            time = 1500
             isWorkTime = true
             isStarted = false
             timerLabel.text = "25:00"
